@@ -1,23 +1,43 @@
 const express = require('express')
-const path = require('path')
 const app = express()
+const path = require('path')
 const mongoose = require('mongoose')
 const Campground = require('./models/campground')
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
 
-// homepage show campgrounds
+// view homepage
 app.get('/', async (req, res) => {
   const campgrounds = await Campground.find({})
   res.render('index', { campgrounds })
 })
 
-// all campgrounds
+// view all campgrounds
 app.get('/campgrounds', async (req, res) => {
   const campgrounds = await Campground.find({})
   res.render('campgrounds/index', { campgrounds })
+})
+
+// show add new campground
+app.get('/campgrounds/new', (req, res) => {
+  res.render('campgrounds/new')
+})
+
+// process new campground
+app.post('/campgrounds', async (req, res) => {
+  const campground = new Campground(req.body.campground)
+  await campground.save()
+  res.redirect(`/campgrounds/${campground._id}`)
+})
+
+// view individual campground
+app.get('/campgrounds/:id', async (req, res) => {
+  const { id } = req.params
+  const campground = await Campground.findById(id)
+  res.render('campgrounds/details', { campground })
 })
 
 mongoose

@@ -1,9 +1,11 @@
 <%- include('../partials/head') %>
   <body>
+    <%- include('../partials/header') %>
     <h1>Campgrounds</h1>
+    <a href="/campgrounds/new">Add Campground</a>
     <ul>
     <% campgrounds.forEach(campground => { %>
-      <li><%= campground.name %></li>
+      <li><h2><a href="/campgrounds/<%= campground._id %>"><%= campground.name %></a></h2></li>
     <% }) %>
     </ul>
   </body>

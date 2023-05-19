@@ -64,3 +64,9 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+.main-nav {
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+}
