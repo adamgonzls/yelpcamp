@@ -1,6 +1,6 @@
 const express = require('express')
-const app = express()
 const path = require('path')
+const app = express()
 const mongoose = require('mongoose')
 const Campground = require('./models/campground')
 
@@ -8,7 +8,14 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'))
 
+// homepage show campgrounds
 app.get('/', async (req, res) => {
+  const campgrounds = await Campground.find({})
+  res.render('index', { campgrounds })
+})
+
+// all campgrounds
+app.get('/campgrounds', async (req, res) => {
   const campgrounds = await Campground.find({})
   res.render('campgrounds/index', { campgrounds })
 })
