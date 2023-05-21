@@ -1,11 +1,7 @@
-<%- include('./partials/head') %>
-  <body>
-    <%- include('./partials/header') %>
-    <h1>YelpCamp</h1>
-    <ul>
-    <% campgrounds.forEach(campground => { %>
-      <li><%= campground.name %></li>
-    <% }) %>
-    </ul>
-  </body>
-</html>
+<% layout('layouts/boilerplate') %>
+<h1>YelpCamp</h1>
+<ul>
+  <% campgrounds.forEach(campground => { %>
+  <li><%= campground.name %></li>
+  <% }) %>
+</ul>

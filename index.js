@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const ejsMate = require('ejs-mate')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const Campground = require('./models/campground')
 
+app.engine('ejs', ejsMate)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
@@ -81,5 +83,5 @@ mongoose
   })
 
 app.listen(3000, () => {
-  console.log('app is listening on port 3000')
+  console.log('app is listening on port http://localhost:3000')
 })
