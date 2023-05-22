@@ -53,7 +53,6 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
 
 // process campground edits
 app.put('/campgrounds/:id', async (req, res) => {
-  console.log(req.body)
   const { id } = req.params
   const campground = await Campground.findByIdAndUpdate(
     id,

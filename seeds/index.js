@@ -3,7 +3,8 @@ const Campground = require('../models/campground')
 const cities = require('./cities')
 const { descriptors, places, descriptions } = require('./seedHelpers')
 require('dotenv').config()
-UNSPLASH_API_URL = 'https://api.unsplash.com/collections/11536948/photos'
+UNSPLASH_API_URL =
+  'https://api.unsplash.com/collections/9046579/photos?per_page=50'
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/YelpCamp')
@@ -31,13 +32,12 @@ const seedDB = async () => {
   const photosFromAPI = await getPhotos().then((photos) => {
     return photos
   })
-  // console.log(photosFromAPI)
+
   for (let i = 0; i < 50; i++) {
     const randomCityData = cities[Math.floor(Math.random() * cities.length)]
     const randomImage =
       photosFromAPI[Math.floor(Math.random() * photosFromAPI.length)].urls
         .regular
-    // console.log(randomImage)
     const randomDescriptor =
       descriptors[Math.floor(Math.random() * descriptors.length)]
     const randomPlace = places[Math.floor(Math.random() * places.length)]
