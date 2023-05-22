@@ -4,6 +4,7 @@
 <ul>
   <% campgrounds.forEach(campground => { %>
   <li>
+    <img src="<%=campground.image %>" />
     <h2>
       <a href="/campgrounds/<%= campground._id %>"><%= campground.name %></a>
     </h2>

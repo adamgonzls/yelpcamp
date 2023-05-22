@@ -1,9 +1,9 @@
-<%- include('../partials/head') %>
-  <body>
-    <main class="container">
-      <%- include('../partials/header') %>
-      <%- body %>
-      <footer>Some words</footer>
-    </main>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body class="d-flex flex-column vh-100">
+    <%- include('../partials/header') %>
+    <main class="container mt-5"><%- body %></main>
+    <%- include('../partials/footer') %>
   </body>
 </html>
